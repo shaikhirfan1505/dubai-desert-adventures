@@ -18,6 +18,13 @@
       --radius: 12px;
       --max-width: 1200px;
     }
+
+
+    main {
+  padding-top: 200px;  /* adjust if needed */
+}
+
+
     *{box-sizing:border-box}
     html,body{height:100%;margin:0;font-family:'Cairo',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial; color:#111}
     a{color:inherit;text-decoration:none}
@@ -26,7 +33,16 @@
     .container{max-width:var(--max-width);margin:0 auto;padding:24px}
 
     /* NAV */
-    header{background-color: white; position:sticky;top:0;z-index:40; max-width: 1400px;}
+    header{
+  background-color: white;
+  position: fixed;      /* instead of sticky */
+  top: 0;
+  left: 0;
+  width: 100%;          /* full width */
+  z-index: 999;         /* stays on top */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
     .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
     .brand{display:flex;align-items:center;gap:12px}
     .logo{width:48px;height:48px;border-radius:10px;background:var(--red);display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:700;font-family:'Montserrat';font-size:18px}
@@ -37,7 +53,7 @@
     .cta:hover{background:var(--dark-red)}
 
     /* HERO */
-    .hero{position:relative;margin-top:12px;border-radius:16px;overflow:hidden}
+    .hero{position:relative;margin-top:70px;border-radius:16px;overflow:hidden}
     .hero-slider{display:flex;transition:transform 0.9s ease;will-change:transform}
     .hero-slide{min-width:100%;height:420px;position:relative;background-size:cover;background-position:center;display:flex;align-items:flex-end}
     .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.0) 30%, rgba(0,0,0,0.55) 100%)}
@@ -59,9 +75,9 @@
     /* Sections */
     .section{padding:28px 0}
     .section-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .section-title{font-family:'Montserrat';font-size:32px;margin:0;}
+    .section-title{font-family:'Montserrat';font-size:32px;margin:0; }
     .cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:18px}
-    .card{background:var(--white);border-radius:12px;padding:16px;box-shadow:var(--card-shadow);transition:transform .18s,box-shadow .18s;border:1px solid rgba(0,0,0,0.03)}
+    .card{background:var(--white); position: relative; border-radius:12px;padding:16px;box-shadow:var(--card-shadow);transition:transform .18s,box-shadow .18s;border:1px solid rgba(0,0,0,0.03)}
     .card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,0.12);border-color:rgba(0,0,0,0.06)}
     .card .media{height:300px;border-radius:10px;overflow:hidden;margin-bottom:12px}
     .card img{width:100%;height:100%;object-fit:cover;display:block}
@@ -219,8 +235,9 @@
 
   /* Sections & Cards */
   .section-title {
-    font-size: 18px;
-  }
+    font-size: 28px;
+    margin-left: 25%;
+}
   .cards-grid {
     grid-template-columns: 1fr;
   }
@@ -330,8 +347,55 @@
   .menu-toggle{
     display:block;
   }
-  .nav.open #navLinks{
-    display:flex;
+  .nav.open .nav-links {
+  display: flex;
+}
+
+}
+
+
+/* Ensure the card is the positioning container */
+.card {
+  position: relative;
+  padding-bottom: 60px; /* space so text doesn't overlap the button */
+}
+
+/* Book Now button styling */
+.book-now-btn {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  background: red;      /* You can replace with var(--red) if using variables */
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.3s ease;
+}
+
+.book-now-btn:hover {
+  background: #b30000;  /* darker red on hover */
+}
+
+/* ✅ Responsive tweaks */
+@media (max-width: 768px) {
+  .book-now-btn {
+    right: 10px;
+    bottom: 10px;
+    padding: 7px 14px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-now-btn {
+    right: 8px;
+    bottom: 8px;
+    padding: 6px 12px;
+    font-size: 12px;
   }
 }
 
@@ -342,21 +406,20 @@
   <header>
     <div class="container nav">
       <div class="brand">
-        <div class="logo">DDA</div>
-        <div>
-          <div style="font-weight:700;font-family:'Montserrat'">Dubai Desert Adventures</div>
-          <button class="menu-toggle" id="menuToggle">
-  ☰
-</button>
-        </div>
-      </div>
+  <div class="logo">DDA</div>
+  <div class="company-name" style="font-weight:700;font-family:'Montserrat'">
+    Dubai Desert Adventures
+  </div>
+  <button class="menu-toggle" id="menuToggle">☰</button>
+</div>
+
       <nav class="nav-links">
         <a href="#packages">Packages</a>
         <a href="#quad">Quad Bike</a>
         <a href="#dunebuggy">Dune Buggy</a>
         <a href="#reviews">Reviews</a>
         <a href="#faq">FAQ</a>
-        <a class="cta" href="#contact">Book Now</a>
+        <a class="cta" href="https://wa.me/971524852401">Book Now</a>
       </nav>
       
 
@@ -395,7 +458,7 @@
     <!-- ABOUT -->
     <section class="about" id="about">
       <div class="text">
-        <h2 style="font-family:'Montserrat'" class="section-title">About Us</h2>
+        <h2 style="font-family:'Montserrat'" >About Us</h2>
         <p style="color:var(--muted)">Red Dunes is a premier desert safari operator based in Dubai. We specialise in curated desert experiences — from family-friendly sunset safaris to adrenaline-packed dune buggy and quad bike adventures. Safety, comfort and memorable service are our promise.</p>
         <ul style="color:var(--muted)">
           <li>Experienced guides & safety-first approach</li>
@@ -418,20 +481,25 @@
           <h3>Standard Safari Package</h3>
           <p>Evening dune bashing, BBQ dinner, cultural show and photo stops. Perfect for first-time visitors.</p>
           <div class="price">From AED 120</div>
+
+          <a href="https://wa.me/971524852401" class="book-now-btn">Book Now</a>
+
         </article>
 
         <article class="card">
-          <div class="media"><img src="http://127.0.0.1:5500/demo%20evening%20desert%20safari.png" alt="overnight"></div>
+          <div class="media"><img src="overnioghtds.jpg" alt="overnight"></div>
           <h3>Overnight Safari Package</h3>
-          <p>Camp under the stars with bonfire, overnight tents, breakfast and sunrise dunes — an immersive desert night.</p>
+          <p>Camp under the stars with bonfire, overnight tents, breakfast and sunrise, an immersive desert night.</p>
           <div class="price">From AED 420</div>
+           <a href="https://wa.me/971524852401" class="book-now-btn">Book Now</a>
         </article>
 
         <article class="card">
-          <div class="media"><img src="http://127.0.0.1:5500/demo%20evening%20desert%20safari.png" alt="VIP"></div>
+          <div class="media"><img src="vipds.jpg" alt="VIP"></div>
           <h3>VIP Safari Package</h3>
           <p>Private vehicle, gourmet dining, premium photoshoot and priority service for groups and celebrations.</p>
           <div class="price">From AED 899</div>
+           <a href="https://wa.me/971524852401" class="book-now-btn">Book Now</a>
         </article>
       </div>
     </section>
@@ -448,6 +516,7 @@
           <h3>Kids Quad Bike</h3>
           <p>Lower-power quad bikes, helmets, and guides. Short circuit with instructor supervision for ages 6+.</p>
           <div class="price">From AED 60</div>
+           <a href="https://wa.me/971524852401" class="book-now-btn">Book Now</a>
         </article>
 
         <article class="card">
@@ -455,6 +524,7 @@
           <h3>Adult In-Circle Quad Bike</h3>
           <p>Controlled off-road circuit inside a protected area — great for learning and building confidence.</p>
           <div class="price">From AED 120</div>
+           <a href="https://wa.me/971524852401" class="book-now-btn">Book Now</a>
         </article>
 
         <article class="card">
@@ -462,6 +532,7 @@
           <h3>Adult Open Desert Quad Bike</h3>
           <p>Guided open desert adventure with longer routes and thrilling sand runs for experienced riders.</p>
           <div class="price">From AED 220</div>
+           <a href="https://wa.me/971524852401" class="book-now-btn">Book Now</a>
         </article>
       </div>
     </section>
@@ -478,6 +549,7 @@
           <h3>Dune Buggy — 30 min</h3>
           <p>Short adrenaline blast across varied dunes. Ideal for first-time riders who want a quick thrill.</p>
           <div class="price">From AED 200</div>
+           <a href="https://wa.me/971524852401" class="book-now-btn">Book Now</a>
         </article>
 
         <article class="card">
@@ -485,6 +557,7 @@
           <h3>Dune Buggy — 1 hr</h3>
           <p>An extended guided route combining steep dunes, plateaus and scenic viewpoints.</p>
           <div class="price">From AED 350</div>
+           <a href="https://wa.me/971524852401" class="book-now-btn">Book Now</a>
         </article>
 
         <article class="card">
@@ -492,6 +565,7 @@
           <h3>Dune Buggy — 2 hrs</h3>
           <p>Two-hour adventure for experienced drivers — longer routes and higher dunes with panoramic stops.</p>
           <div class="price">From AED 650</div>
+           <a href="https://wa.me/971524852401" class="book-now-btn">Book Now</a>
         </article>
       </div>
     </section>
